@@ -37,7 +37,7 @@
                                 <td><?= $p['keterangan'] ?></td>
                                 <td><?= date('d-m-Y', strtotime($p['tgl_pasang'])) ?></td>
                                 <td>
-                                    <a href="<?= base_url('perawat/seePhlebitis/' . $p['id']); ?>" class="btn btn-sm btn-info btn-circle"><i class="fa-solid fa-eye"></i></a>
+                                    <a href="<?= base_url('pasien/seePhlebitis/' . $p['id']); ?>" class="btn btn-sm btn-info btn-circle"><i class="fa-solid fa-eye"></i></a>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
@@ -51,7 +51,35 @@
                                 <td><?= $i['keterangan'] ?></td>
                                 <td><?= date('d-m-Y', strtotime($i['tgl_pemeriksaan'])) ?></td>
                                 <td>
-                                    <a href="<?= base_url('perawat/seeISK/' . $i['id']); ?>" class="btn btn-sm btn-info btn-circle"><i class="fa-solid fa-eye"></i></a>
+                                    <a href="<?= base_url('pasien/seeISK/' . $i['id']); ?>" class="btn btn-sm btn-info btn-circle"><i class="fa-solid fa-eye"></i></a>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                        <?php
+                        $no = 1;
+                        foreach ($scabies as $sc) :
+                        ?>
+                            <tr>
+                                <td><?= $sc['nama_pasien'] ?></td>
+                                <td><?= $sc['jenis_surveilans'] ?></td>
+                                <td><?= $sc['keterangan'] ?></td>
+                                <td><?= date('d-m-Y', strtotime($sc['tgl_pemeriksaan'])) ?></td>
+                                <td>
+                                    <a href="<?= base_url('pasien/seeScabies/' . $sc['id']); ?>" class="btn btn-sm btn-info btn-circle"><i class="fa-solid fa-eye"></i></a>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                        <?php
+                        $no = 1;
+                        foreach ($dekubitus as $d) :
+                        ?>
+                            <tr>
+                                <td><?= $d['nama_pasien'] ?></td>
+                                <td><?= $d['jenis_surveilans'] ?></td>
+                                <td><?= $d['keterangan'] ?></td>
+                                <td><?= date('d-m-Y', strtotime($d['tgl_kejadian'])) ?></td>
+                                <td>
+                                    <a href="<?= base_url('pasien/seeDekubitus/' . $d['id']); ?>" class="btn btn-sm btn-info btn-circle"><i class="fa-solid fa-eye"></i></a>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
