@@ -18,9 +18,9 @@ class Pasien extends CI_Controller
     {
         // $data['pasien'] = $this->db->get_where('pasien', ['nama' => $this->session->userdata('name')])->result_array();
         $data['phlebitis'] = $this->db->get_where('phlebitis', ['nama_pasien' => $this->session->userdata('name')])->result_array();
-        //$dataa['scabies'] = $this->db->get_where('scabies', ['nama_pasien' => $this->session->userdata('name')])->row();
+        $data['scabies'] = $this->db->get_where('scabies', ['nama_pasien' => $this->session->userdata('name')])->result_array();
         $data['isk'] = $this->db->get_where('isk', ['nama_pasien' => $this->session->userdata('name')])->result_array();
-        // $dataa['dekubitus'] = $this->db->get_where('dekubitus', ['nama_pasien' => $this->session->userdata('name')])->row();
+        $data['dekubitus'] = $this->db->get_where('dekubitus', ['nama_pasien' => $this->session->userdata('name')])->result_array();
 
         $this->load->view('template/dashboard_header');
         $this->load->view('pasien/homepage', $data);
@@ -85,5 +85,46 @@ class Pasien extends CI_Controller
             </div>');
             redirect('pasien');
         }
+    }
+
+    // SEE DETAIL
+    public function seePhlebitis($id)
+    {
+        $where = array('id' => $id);
+        $data['phlebitis'] = $this->Pasien_m->seeData($where, 'phlebitis')->result_array();
+
+        $this->load->view('template/dashboard_header');
+        $this->load->view('pasien/detail-phlebitis', $data);
+        $this->load->view('template/dashboard_footer');
+    }
+
+    public function seeScabies($id)
+    {
+        $where = array('id' => $id);
+        $data['scabies'] = $this->Pasien_m->seeData($where, 'scabies')->result_array();
+
+        $this->load->view('template/dashboard_header');
+        $this->load->view('pasien/detail-scabies', $data);
+        $this->load->view('template/dashboard_footer');
+    }
+
+    public function seeISK($id)
+    {
+        $where = array('id' => $id);
+        $data['isk'] = $this->Pasien_m->seeData($where, 'isk')->result_array();
+
+        $this->load->view('template/dashboard_header');
+        $this->load->view('pasien/detail-isk', $data);
+        $this->load->view('template/dashboard_footer');
+    }
+
+    public function seeDekubitus($id)
+    {
+        $where = array('id' => $id);
+        $data['dekubitus'] = $this->Pasien_m->seeData($where, 'dekubitus')->result_array();
+
+        $this->load->view('template/dashboard_header');
+        $this->load->view('pasien/detail-dekubitus', $data);
+        $this->load->view('template/dashboard_footer');
     }
 }
